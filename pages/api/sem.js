@@ -1,7 +1,7 @@
-const fs = require("fs")
+import * as fs from "fs";
 export default function handler(req, res) {
     console.log(req.query.sem);
-    const file = fs.readFile(`kjdb/${req.query.sem}.json`,"utf8",(err,data)=>{
+    fs.readFile(`kjdb/${req.query.sem}.json`,"utf8",(err,data)=>{
         const jsondata = JSON.parse(data);
         if(jsondata.show){
             res.status(200).json(JSON.parse(data).data)
