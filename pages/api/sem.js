@@ -37,12 +37,11 @@ const sem3data = {
     ]
 
 }
-export default async function handler(req, res) {
-    console.log(req.query.sem);
+export default function handler(req, res) {
     if (sem3data.show) {
-        res.send(200).json(sem3data.data)
+        res.status(200).json(sem3data.data)
     }else{
-        res.send(200).json({data:false})
+        res.status(200).json({data:false})
     }
   }
   
