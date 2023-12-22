@@ -1,47 +1,17 @@
-const sem3data = {
-    
-    show: true,
-    data:[
-        {
-            title:"study material",
-            data:[
-                {
-                    title:"SLP U-1",
-                    src:"unit-1-1.pdf"
-                },
-                {
-                    title:"DSA U-1",
-                    src:"unit-1-2.pdf"
-                },
-                {
-                    title:"SLP U-1",
-                    src:"unit-1-1.pdf"
-                },
-                {
-                    title:"SLP U-1",
-                    src:"unit-1-1.pdf"
-                }
-                
-            ]
-        },
-        {
-            title:"IMP",
-            data:[
-                {
-                    title:"IMP questions RDBMS",
-                    src:"important-questions-rdbms.pdf"
-                }
-                
-            ]
+export default async function handler(req, res) {
+    try{
+        
+        const sendreq = await fetch(`https://malavmori.github.io/jsonapi/kjdb/${req.query.data}.json`)
+        const data = await sendreq.json()
+        if (data.show) {
+            res.status(200).json(data)
+        }else{
+            res.status(500).json({data:false})
         }
-    ]
 
-}
-export default function handler(req, res) {
-    if (sem3data.show) {
-        res.status(200).json(sem3data.data)
-    }else{
-        res.status(200).json({data:false})
+    }catch{
+        res.status(500).json({data:false})
     }
+
   }
   
